@@ -51,3 +51,5 @@ npm run package-win
 ```
 npm run package-linux
 ```
+
+Скачать дистрибутивы можно [здесь](https://github.com/arfeo/Mayabr/releases/latest).
