@@ -4,7 +4,7 @@
 
 Источник метеоданных: https://www.accuweather.com
 
-Протестировано в `Chrome`, `FireFox`, `Safari`, `Opera`.
+Протестировано в `Chrome`, `FireFox`, `Safari`, `Opera`, `Edge`.
 
 ![Mayabr](http://arfeo.net/static/mayabr/mayabr.gif "Интерфейс приложения")
 
