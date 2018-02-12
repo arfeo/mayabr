@@ -24,3 +24,4 @@ yarn-error.log*
 *.sublime-workspace
 
 /release-builds
+package-lock.json
