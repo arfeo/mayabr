@@ -1,0 +1,54 @@
+.widget {
+	border: 1px solid #999;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	margin-right: 3%;
+	padding: 10px;
+	position: relative;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: calc(30% - 20px);
+	max-width: calc(30% - 20px);
+}
+
+.widget button {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	border: 0;
+	font-size: 25px;
+	font-weight: 100;
+	color: #aaa;
+	background-color: white;
+	display: table-cell;
+	padding-top: 0;
+}
+
+.city-title {
+	font-weight: bold;
+	cursor: pointer;
+	display: inline-block;
+	max-width: calc(100% - 30px);
+}
+
+.city-title a {
+	text-decoration: none;
+	color: black;
+}
+
+.temperature {
+	font-size: 25px;
+	font-weight: 100;
+	margin: 10px 0;
+	display: flex;
+	align-items: center;
+}
+
+.details {
+	font-size: 14px;
+	font-weight: 100;
+}

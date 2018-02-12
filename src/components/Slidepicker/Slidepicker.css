@@ -1,0 +1,45 @@
+.slider {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 35%;
+}
+
+.rangeslider-horizontal .rangeslider__fill {
+  background-color: #f0f0f0;
+}
+
+.rangeslider {
+  background-color: #666;
+}
+
+.rangeslider-horizontal .rangeslider__handle:after {
+  display: none;
+}
+
+.rangeslider-horizontal {
+  height: 5px;
+  position: relative;
+  top: -10px;
+}
+
+.rangeslider-horizontal .rangeslider__handle {
+  width: 7px;
+  height: 15px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 2px solid white;
+  background: black;
+  outline: none;
+}
+
+.value {
+  font-size: 14px;
+  position: relative;
+  top: -20px;
+  display: inline-block;
+  color: white;
+}
