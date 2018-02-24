@@ -37,19 +37,19 @@ $ npm run build
 В зависимости от целевой платформы выполните соответствующую команду:
 
 ```
-npm run package-mac
+$ npm run package-mac
 ```
 
 или
 
 ```
-npm run package-win
+$ npm run package-win
 ```
 
 или
 
 ```
-npm run package-linux
+$ npm run package-linux
 ```
 
 Скачать дистрибутивы можно [здесь](https://github.com/arfeo/Mayabr/releases/latest).
