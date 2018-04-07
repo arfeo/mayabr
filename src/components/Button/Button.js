@@ -1,85 +1,111 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import './Button.css'
+import { addWidgetAction, updateWidgetAction } from '../../actions/widgets';
 
-import { addWidgetAction, updateWidgetAction } from '../../actions/widgets'
+import './Button.css';
 
-class Button extends React.Component {
+const Button = (props) => {
+	const {
+    selected,
+    widgets,
+    temp,
+    widgetId,
+    buttonText,
+    buttonStyle,
+    buttonAction,
+    clearSelectedHandler,
+    clearInputHandler,
+    onAddWidget,
+    onUpdateWidget,
+    onRemoveWidget,
+	} = props;
 
-	buttonClickHandler = () => {
-		switch (this.props.buttonAction) {
-		case 'addWidget':
+	const buttonClickHandler = () => {
+		switch (buttonAction) {
+			case 'addWidget':
 			{
-				this.addWidget()
-				break
+				addWidget();
+				break;
 			}
-		case 'updateWidgets':
+			case 'updateWidgets':
 			{
-				this.updateWidgets()
-				break
+				updateWidgets();
+				break;
 			}
-		case 'removeWidget':
+			case 'removeWidget':
 			{
-				this.removeWidget()
-				break
+				removeWidget();
+				break;
 			}
-		default:
+			default:
 			{
-				return
+				return;
 			}
 		}
-	}
+	};
 
-	addWidget = () => {
-		const city = this.props.selected
-		if(this.props.widgets.find(widget => widget.id === city.id) === undefined) {
+	const addWidget = () => {
+		const city = selected;
+
+		if(widgets.find(widget => widget.id === city.id) === undefined) {
 			if(Object.keys(city).length > 0) {
-				this.props.onAddWidget(city, this.props.temp)
-				this.props.clearSelectedHandler()
-				this.props.clearInputHandler()
+				onAddWidget(city, temp);
+				clearSelectedHandler();
+				clearInputHandler();
 			}
 		} else {
-			this.props.clearSelectedHandler()
-			this.props.clearInputHandler()
-			alert(`Виджет города ${city.name} уже добавлен`)
+			clearSelectedHandler();
+			clearInputHandler();
+			alert(`Виджет города ${city.name} уже добавлен`);
 		}
-	}
+	};
 
-	updateWidgets = () => {
-		this.props.widgets.find(widget => {
-			this.props.onUpdateWidget(widget)
-			return false
+	const updateWidgets = () => {
+		widgets.find(widget => {
+			onUpdateWidget(widget);
+			return false;
 		})
-	}
+	};
 
-	removeWidget = () => {
-		this.props.onRemoveWidget(this.props.widgetId)
-	}
+	const removeWidget = () => {
+		onRemoveWidget(widgetId);
+	};
 
-	render() {
+	return (
+		<button onClick={buttonClickHandler} style={buttonStyle}>
+			{buttonText}
+		</button>
+	);
+};
 
-		return (
-			<button onClick={this.buttonClickHandler} style={this.props.buttonStyle}>
-				{this.props.buttonText}
-			</button>
-		)
-
-	}
-
-}
+Button.propTypes = {
+  selected: PropTypes.object,
+  widgets: PropTypes.array,
+  temp: PropTypes.number,
+  widgetId: PropTypes.string,
+  buttonText: PropTypes.string,
+  buttonStyle: PropTypes.object,
+  buttonAction: PropTypes.string,
+  clearSelectedHandler: PropTypes.func,
+  clearInputHandler: PropTypes.func,
+  onAddWidget: PropTypes.func,
+  onUpdateWidget: PropTypes.func,
+  onRemoveWidget: PropTypes.func,
+};
 
 export default connect(
 	state => state,
 	dispatch => ({
 		onAddWidget: (selected, temp) => {
-			dispatch(addWidgetAction(selected, temp))
+			dispatch(addWidgetAction(selected, temp));
 		},
 		onUpdateWidget: (widget) => {
-			dispatch(updateWidgetAction(widget))
+			dispatch(updateWidgetAction(widget));
 		},
 		onRemoveWidget: (payload) => {
-			dispatch({ type: 'REMOVE_WIDGET', payload })
+			dispatch({ type: 'REMOVE_WIDGET', payload });
 		}
-	})
-)(Button)
+	}),
+)(Button);

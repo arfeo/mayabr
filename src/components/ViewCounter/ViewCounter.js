@@ -1,15 +1,22 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class ViewCounter extends React.Component {
+const ViewCounter = (props) => {
+	const {
+    widgetsCount,
+    widgetsVisible,
+	} = props;
 
-	render() {
+	return (
+		<div>
+			{widgetsCount === 0 ? 'Нет добавленных виджетов' : `Показано ${widgetsVisible} из ${widgetsCount}`}
+		</div>
+	);
+};
 
-		return (
-			<div>
-				{this.props.widgetsCount === 0 ? `Нет добавленных виджетов` : `Показано ${this.props.widgetsVisible} из ${this.props.widgetsCount}`}
-			</div>
-		)
+ViewCounter.propTypes = {
+  widgetsCount: PropTypes.number,
+  widgetsVisible: PropTypes.number,
+};
 
-	}
-
-}
+export default ViewCounter;

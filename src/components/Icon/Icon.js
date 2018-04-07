@@ -1,34 +1,43 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Icon extends React.Component {
+const Icon = (props) => {
+	const {
+    iconType,
+    widgetIcon,
+    widgetDescr,
+	} = props;
 
-	generateIcon = () => {
-		switch(this.props.iconType) {
-		case 'widgetWeatherIcon':
+	const generateIcon = () => {
+		switch (iconType) {
+			case 'widgetWeatherIcon':
 			{
 				return (
 					<img
-						src={ this.props.widgetIcon ? require(`../../static/${this.props.widgetIcon}`) : "" }
-						alt={ this.props.widgetDescr }
-						title={ this.props.widgetDescr }
+						src={widgetIcon ? require(`../../static/${widgetIcon}`) : ''}
+						alt={widgetDescr}
+						title={widgetDescr}
 					/>
-				)
+				);
 			}
-		default:
+			default:
 			{
-				return
+				return;
 			}
 		}
 	}
 
-	render() {
+	return (
+		<div>
+			{generateIcon()}
+		</div>
+	);
+};
 
-		return (
-			<div>
-				{this.generateIcon()}
-			</div>
-		)
+Icon.propTypes = {
+  iconType: PropTypes.string,
+  widgetIcon: PropTypes.string,
+  widgetDescr: PropTypes.string,
+};
 
-	}
-
-}
+export default Icon;

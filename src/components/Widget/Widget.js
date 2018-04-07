@@ -1,46 +1,69 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import './Widget.css'
+import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 
-import Button from '../Button/Button'
-import Icon from '../Icon/Icon'
+import './Widget.css';
 
-export default class Widget extends React.Component {
+const Widget = (props) => {
+	const {
+    keyIndex,
+    isVisible,
+    widgetId,
+    widgetName,
+    widgetLink,
+    widgetIcon,
+    widgetDescr,
+    tempInfo,
+    windInfo,
+    pressureInfo,
+	} = props;
 
-	render() {
-
-		return (
-			<div
-				className = "widget"
-				key = {this.props.keyIndex}
-				style = {this.props.isVisible ? { display: "inline-block" } : { display: "none" }}
-			>
-				<div className="city-title">
-					<a href={this.props.widgetLink} target="_blank">{this.props.widgetName}</a>
-				</div>
-				<div>
-					<Button
-						buttonAction = "removeWidget"
-						buttonText = "✕"
-						widgetId = {this.props.widgetId}
-						isEnabled = {true}
-					/>
-				</div>
-				<div className="temperature">
-					<Icon
-						iconType = "widgetWeatherIcon"
-						widgetIcon = {this.props.widgetIcon < 10 ? `0${this.props.widgetIcon}-s.png` : `${this.props.widgetIcon}-s.png` }
-						widgetDescr = {this.props.widgetDescr}
-					/>
-					{ this.props.tempInfo === 1000 ? "--" : this.props.tempInfo > 0 ? `+${this.props.tempInfo}` : this.props.tempInfo === 0 ? 0 : this.props.tempInfo } °C
-				</div>
-				<div className="details">
-					<div>Ветер: { parseInt(this.props.windInfo * 0.277778, 10) } м/с</div>
-					<div>Давление: { parseInt(this.props.pressureInfo * 0.750062, 10) } мм</div>
-				</div>
+	return (
+		<div
+			className="widget"
+			key={keyIndex}
+			style={isVisible ? { display: 'inline-block' } : { display: 'none' }}
+		>
+			<div className="city-title">
+				<a href={widgetLink} target="_blank">{widgetName}</a>
 			</div>
-		)
+			<div>
+				<Button
+					buttonAction="removeWidget"
+					buttonText="✕"
+					widgetId={widgetId}
+					isEnabled={true}
+				/>
+			</div>
+			<div className="temperature">
+				<Icon
+					iconType="widgetWeatherIcon"
+					widgetIcon={widgetIcon < 10 ? `0${widgetIcon}-s.png` : `${widgetIcon}-s.png` }
+					widgetDescr={widgetDescr}
+				/>
+				{tempInfo === 1000 ? '--' : tempInfo > 0 ? `+${tempInfo}` : tempInfo === 0 ? 0 : tempInfo } °C
+			</div>
+			<div className="details">
+				<div>Ветер: { parseInt(windInfo * 0.277778, 10) } м/с</div>
+				<div>Давление: { parseInt(pressureInfo * 0.750062, 10) } мм</div>
+			</div>
+		</div>
+	);
+};
 
-	}
+Widget.propTypes = {
+  keyIndex: PropTypes.number,
+  isVisible: PropTypes.bool,
+  widgetId: PropTypes.string,
+  widgetName: PropTypes.string,
+  widgetLink: PropTypes.string,
+  widgetIcon: PropTypes.string,
+  widgetDescr: PropTypes.string,
+  tempInfo: PropTypes.number,
+  windInfo: PropTypes.number,
+  pressureInfo: PropTypes.number,
+};
 
-}
+export default Widget;

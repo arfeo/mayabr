@@ -1,15 +1,16 @@
-import { saveData } from '../utils/storage'
+import { saveData } from '../utils/storage';
 
 export default function temp(state = 0, {type, payload}) {
-	switch(type) {
-	case "CHANGE_TEMP":
+	switch (type) {
+		case 'CHANGE_TEMP':
 		{
-			saveData("temp", payload)
-			return payload
+			saveData('temp', payload);
+
+			return payload;
 		}
-	default:
+		default:
 		{
-			return state
+			return state;
 		}
 	}
-}
+};

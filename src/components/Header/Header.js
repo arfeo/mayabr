@@ -1,28 +1,35 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import './Header.css'
+import Button from '../Button/Button';
+import ViewCounter from '../ViewCounter/ViewCounter';
 
-import Button from '../Button/Button'
-import ViewCounter from '../ViewCounter/ViewCounter'
+import './Header.css';
 
-export default class Header extends React.Component {
+const Header = (props) => {
+	const {
+    widgetsCount,
+    widgetsVisible,
+	} = props;
 
-	render() {
+	return (
+		<div className="header">
+			<ViewCounter
+				widgetsCount={widgetsCount}
+				widgetsVisible={widgetsVisible}
+			/>
+			<Button
+				buttonAction="updateWidgets"
+				buttonText="Обновить"
+				buttonStyle={widgetsCount > 0 ? ({ display: 'inline-block' }) : ({ display: 'none' })}
+			/>
+		</div>
+	);
+};
 
-		return (
-			<div className="header">
-				<ViewCounter
-					widgetsCount = {this.props.widgetsCount}
-					widgetsVisible = {this.props.widgetsVisible}
-				/>
-				<Button
-					buttonAction = "updateWidgets"
-					buttonText = "Обновить"
-					buttonStyle = {this.props.widgetsCount > 0 ? ({ display: "inline-block" }) : ({ display: "none" })}
-				/>
-			</div>
-		)
+Header.propTypes = {
+  widgetsCount: PropTypes.number,
+  widgetsVisible: PropTypes.number,
+};
 
-	}
-
-}
+export default Header;

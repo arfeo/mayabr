@@ -1,145 +1,139 @@
-import React from 'react'
-import Autosuggest from 'react-autosuggest'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import Autosuggest from 'react-autosuggest';
+import { connect } from 'react-redux';
 
-import './Suggest.css'
+import Button from '../Button/Button';
+import { citiesList } from '../../utils/cities';
 
-import Button from '../Button/Button'
-import Cities from '../../utils/cities'
+import './Suggest.css';
 
-const escapeRegexCharacters = str => {
-	return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+const escapeRegexCharacters = (str) => {
+	return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-const getSuggestions = value => {
-	const escapedValue = escapeRegexCharacters(value.trim())
+const getSuggestions = (value) => {
+	const escapedValue = escapeRegexCharacters(value.trim());
+
 	if (escapedValue === '') {
-		return []
+		return [];
 	}
-	const regex = new RegExp('^' + escapedValue, 'ui')
-	return Cities
-		.map(section => {
-			return {
-				title: section.title,
-				cities: section.cities.filter(city => regex.test(city.name))
-			}
-		}
-	).filter(section => section.cities.length > 0)
+
+	const regex = new RegExp('^' + escapedValue, 'ui');
+
+	return citiesList.map((section) => {
+		return {
+			title: section.title,
+			cities: section.cities.filter(city => regex.test(city.name)),
+		};
+	}).filter(section => section.cities.length > 0);
 }
 
-const getSuggestionValue = suggestion => suggestion.id
+const getSuggestionValue = suggestion => suggestion.id;
 
-const renderSectionTitle = section => {
+const renderSectionTitle = (section) => {
 	return (
 		<strong>{section.title}</strong>
-	)
-}
+	);
+};
 
-const renderSuggestion = suggestion => (
+const renderSuggestion = (suggestion) => (
 	<div>{suggestion.name}</div>
-)
+);
 
-const getSectionSuggestions = section => {
-	return section.cities
-}
+const getSectionSuggestions = (section) => {
+	return section.cities;
+};
 
-class Suggest extends React.Component {
-
-	constructor() {
-		super()
-		this.state = {
-			value: '',
-			suggestions: [],
-			buttonStyle: { opacity: "0.3", cursor: "default" }
-		}
-	}
+class Suggest extends Component {
+  state = {
+    value: '',
+    suggestions: [],
+    buttonStyle: { opacity: '0.3', cursor: 'default' },
+  }
 
 	onChange = (event, { newValue }) => {
 		this.setState({
-			value: newValue
-		})
-		this.clearSelected()
+			value: newValue,
+		});
+
+		this.clearSelected();
 	}
 
 	onSuggestionsFetchRequested = ({ value }) => {
 		this.setState({
 			suggestions: getSuggestions(value),
-			buttonStyle: { opacity: "0.3", cursor: "default" }
-		})
+			buttonStyle: { opacity: "0.3", cursor: "default" },
+		});
 	}
 
 	onSuggestionsClearRequested = () => {
 		this.setState({
-			suggestions: []
-		})
+			suggestions: [],
+		});
 	}
 
 	onSuggestionSelected = (event, { suggestion }) => {
 		this.setState({
 			value: suggestion.name,
-			buttonStyle: { opacity: "1.0", cursor: "pointer" }
-		})
-		this.props.onCitySelected(suggestion.id, suggestion.name, suggestion.key)
+			buttonStyle: { opacity: "1.0", cursor: "pointer" },
+		});
+
+		this.props.onCitySelected(suggestion.id, suggestion.name, suggestion.key);
 	}
 
 	onSuggestionHighlighted = ({ suggestion }) => {
 		if(suggestion) {
 			this.setState({
-				value: suggestion.name
-			})
+				value: suggestion.name,
+			});
 		}
 	}
 
 	clearInput = () => {
 		this.setState({
 			value: '',
-			buttonStyle: { opacity: "0.3", cursor: "default" }
-		})
+			buttonStyle: { opacity: "0.3", cursor: "default" },
+		});
 	}
 
 	clearSelected = () => {
-		this.props.onClearSelected()
+		this.props.onClearSelected();
 	}
 
 	render() {
-
-		const { value, suggestions } = this.state
+		const { value, suggestions } = this.state;
 
 		const inputProps = {
 			placeholder: 'Добавьте город...',
 			value,
-			onChange: this.onChange
-		}
+			onChange: this.onChange,
+		};
 
 		return (
-
 			<div className="suggest">
 				<Autosuggest
-					multiSection = {true}
-					suggestions = {suggestions}
-					onSuggestionsFetchRequested = {this.onSuggestionsFetchRequested}
-					onSuggestionsClearRequested = {this.onSuggestionsClearRequested}
-					onSuggestionSelected = {this.onSuggestionSelected}
-					onSuggestionHighlighted = {this.onSuggestionHighlighted}
-					getSuggestionValue = {getSuggestionValue}
-					renderSuggestion = {renderSuggestion}
-					renderSectionTitle = {renderSectionTitle}
-        			getSectionSuggestions = {getSectionSuggestions}
-					inputProps = {inputProps}
+					multiSection={true}
+					suggestions={suggestions}
+					onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+					onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+					onSuggestionSelected={this.onSuggestionSelected}
+					onSuggestionHighlighted={this.onSuggestionHighlighted}
+					getSuggestionValue={getSuggestionValue}
+					renderSuggestion={renderSuggestion}
+					renderSectionTitle={renderSectionTitle}
+					getSectionSuggestions={getSectionSuggestions}
+					inputProps={inputProps}
 				/>
 				<Button
-					buttonAction = "addWidget"
-					buttonText = "+"
-					buttonStyle = {this.state.buttonStyle}
-					clearInputHandler = {this.clearInput}
-					clearSelectedHandler = {this.clearSelected}
+					buttonAction="addWidget"
+					buttonText="+"
+					buttonStyle={this.state.buttonStyle}
+					clearInputHandler={this.clearInput}
+					clearSelectedHandler={this.clearSelected}
 				/>
 			</div>
-
-		)
-
+		);
 	}
-
 }
 
 export default connect(
@@ -150,10 +144,10 @@ export default connect(
 				id,
 				name,
 				key,
-			}})
+			}});
 		},
 		onClearSelected: () => {
-			dispatch({ type: 'CLEAR_SELECTED' })
+			dispatch({ type: 'CLEAR_SELECTED' });
 		}
-	})
-)(Suggest)
+	}),
+)(Suggest);

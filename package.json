@@ -1,6 +1,6 @@
 {
   "name": "mayabr",
-  "productName": "Маябрь",
+  "productName": "Mayabr",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -25,12 +25,21 @@
     "electron": "electron .",
     "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds",
-    "package-win": "electron-packager . mayabr --overwrite --asar=true --platform=win32 --arch=x64 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Маябрь\"",
+    "package-win": "electron-packager . mayabr --overwrite --asar=true --platform=win32 --arch=x64 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Mayabr\"",
     "package-linux": "electron-packager . mayabr --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=release-builds"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.2",
     "electron": "^1.8.2",
     "electron-packager": "^11.0.0",
+    "eslint": "4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-flowtype": "2.39.1",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "7.4.0",
     "redux-devtools": "^3.4.1"
   }
 }

@@ -1,16 +1,16 @@
 export default function selected(state = {}, {type, payload}) {
-	switch(type) {
-	case "SELECT_CITY":
+	switch (type) {
+		case 'SELECT_CITY':
 		{
-			return payload
+			return payload;
 		}
-	case "CLEAR_SELECTED":
+		case 'CLEAR_SELECTED':
 		{
-			return {}
+			return {};
 		}
-	default:
+		default:
 		{
-			return state
+			return state;
 		}
 	}
-}
+};
