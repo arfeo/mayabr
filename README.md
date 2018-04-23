@@ -51,3 +51,10 @@ $ npm run package-win
 ```
 $ npm run package-linux
 ```
+
+## Powered by
+
+* [axios](https://github.com/axios/axios) (MIT)
+* [React Autosuggest](https://github.com/moroshko/react-autosuggest) (MIT)
+* [React Rangeslider](https://github.com/whoisandy/react-rangeslider) (MIT)
+* [Redux Thunk](https://github.com/gaearon/redux-thunk) (MIT)
