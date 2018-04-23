@@ -28,8 +28,6 @@ $ npm install
 $ npm run build
 ```
 
-Результат сборки: http://arfeo.net/tests/mayabr/
-
 ### Упаковка исполняемого файла (Electron)
 
 Приложение подготовлено для упаковки в следующих средах: `macOS`, `Windows` и `Linux`.
