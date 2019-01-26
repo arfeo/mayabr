@@ -6,7 +6,7 @@
 
 Протестировано в `Chrome`, `FireFox`, `Safari`, `Opera`, `Edge`.
 
-![Mayabr](http://arfeo.net/static/mayabr/mayabr.gif "Интерфейс приложения")
+![Mayabr](http://static.arfeo.net/mayabr/mayabr.gif "Интерфейс приложения")
 
 ## Установка
 
