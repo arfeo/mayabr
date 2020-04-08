@@ -4,16 +4,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.19.2",
     "create-react-class": "^15.6.3",
-    "react": "^16.2.0",
-    "react-autosuggest": "^9.3.3",
-    "react-dom": "^16.2.0",
+    "react": "^16.13.1",
+    "react-autosuggest": "^10.0.0",
+    "react-dom": "^16.13.1",
     "react-rangeslider": "^2.2.0",
-    "react-redux": "^5.0.6",
-    "react-scripts": "1.1.0",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "react-redux": "^7.2.0",
+    "react-scripts": "^3.4.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "main": "src/electron-starter.js",
   "homepage": "./",
@@ -29,17 +29,29 @@
     "package-linux": "electron-packager . mayabr --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=release-builds"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.2",
-    "electron": "^1.8.2",
-    "electron-packager": "^11.0.0",
-    "eslint": "4.10.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-react-app": "^2.1.0",
-    "eslint-loader": "1.9.0",
-    "eslint-plugin-flowtype": "2.39.1",
-    "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "7.4.0",
-    "redux-devtools": "^3.4.1"
+    "babel-eslint": "^10.1.0",
+    "electron": "^8.2.1",
+    "electron-packager": "^14.2.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-loader": "^4.0.0",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "redux-devtools": "^3.5.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
